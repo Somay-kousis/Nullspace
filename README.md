@@ -42,7 +42,7 @@ sh scripts_runall.sh "groq:qwen/qwen3.8-27b"
 ```
 
 - **Keys:** read from environment variables or `~/.config/nullspace.env`: `GROQ_API_KEYS` (comma-separated) and `GEMINI_API_KEY`.
-- **Real-data statistics:** set `NULLSPACE_REAL_EXPORT` to the export's `revisions.jsonl`. The export isn't redistributed here; download it from collusion.wiki.
+- **Real-data statistics:** put the export's `revisions.jsonl` at `data/revisions.jsonl` (or set `NULLSPACE_REAL_EXPORT` to its path). The export isn't redistributed here; download it from collusion.wiki.
 - **Model outputs:** provider models are not deterministic, so a rerun gives new model outputs. The task world for a given seed is identical in every process (tested).
 
 ## Layout

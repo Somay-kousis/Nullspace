@@ -13,10 +13,7 @@ from .realdata import load_real
 
 ROOT = Path(__file__).resolve().parent.parent
 RUNS, OUT = ROOT / "runs", ROOT / "analysis"
-REAL = Path(os.environ.get(
-    "NULLSPACE_REAL_EXPORT",
-    "/Users/apple/Collude/chat/research_notes/Collusion sprint page winners and papers/"
-    "sources/wiki_export/raw/revisions.jsonl"))
+REAL = Path(os.environ.get("NULLSPACE_REAL_EXPORT", ROOT / "data" / "revisions.jsonl"))
 FEATURES = ["cohort_word", "round_marker", "signature", "report_format",
             "L_runde", "L_cohort", "L_meldeformat", "L_sig_endzeile"]
 

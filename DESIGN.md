@@ -67,7 +67,7 @@ The prompt text, the tool descriptions and the JSON schema are byte-identical be
 The same extractors run on the real export (`revisions.jsonl`, `dse` wiki), which validates them against Lütje's published shares where available.
 
 ## Controls and sizes
-- **Positive control:** V must show convergence (E1 > 0) and true copying above zero. If two pilot V runs show none, the kill criterion in `chat/decisions.md` applies.
+- **Positive control:** V must show convergence (E1 > 0) and true copying above zero. If two pilot V runs show none, the design is reworked before any main run.
 - **Negative control:** B, by construction.
 - **Seeds:** 3 per condition first (the sprint says 3-5); more only after the positive control works.
 - **Scale per run:** F = 3 families × C = 4 cohorts × R = 3 rounds = 36 agents, about 72 calls. Three seeds × 2 conditions ≈ 430 calls, plus judge calls.

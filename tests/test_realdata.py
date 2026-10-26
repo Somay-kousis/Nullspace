@@ -8,8 +8,7 @@ from nullspace.realdata import load_real
 
 REAL = Path(os.environ.get(
     "NULLSPACE_REAL_EXPORT",
-    "/Users/apple/Collude/chat/research_notes/Collusion sprint page winners and papers/"
-    "sources/wiki_export/raw/revisions.jsonl"))
+    Path(__file__).resolve().parent.parent / "data" / "revisions.jsonl"))
 
 
 @pytest.mark.skipif(not REAL.exists(), reason="real export not present")
