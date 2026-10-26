@@ -145,3 +145,20 @@ def test_chance_correct_is_uniform_guess_over_unrevealed_states():
     from nullspace.analyze import chance_correct
     world = [{"known_items": ["Ohio"]}, {"known_items": ["Ohio", "Iowa"]}]
     assert chance_correct(world) == pytest.approx(1 / 49 + 1 / 48)
+
+
+def test_cluster_rate_counts_only_parsed_scores():
+    """Checker B3: an unparsable judge reply (None) is not in the numerator or the n."""
+    from nullspace.analyze import cluster_rate_ci, parsed_n
+    runs = [[90, None, 95], [10]]
+    rate, _ = cluster_rate_ci(runs, threshold=50, n_boot=200)
+    assert rate == pytest.approx(2 / 3)
+    assert parsed_n(runs) == 3
+
+
+def test_page_names_normalised_strip_cohort_and_round_tokens():
+    from nullspace.analyze import normalise_page
+    assert normalise_page("GrocerySequence_Jan12") == normalise_page("GrocerySequence_Mar3")
+    assert normalise_page("Sector61R2Live") == normalise_page("Sector61R3Live")
+    assert normalise_page("Grocery_Round_2_Feb21") == normalise_page("grocery round 3 feb22")
+    assert normalise_page("GrocerySequence") != normalise_page("ClothingSequence")

@@ -1,6 +1,7 @@
 """Regenerate every reported number: python -m nullspace.analyze"""
 import json
 import os
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -94,6 +95,7 @@ def run_stats(run):
                                                     world[r["slot_id"]]["cohort_date"], r["round"])
                                    for r in revs]) if revs else None)
     s["chance_correct"] = chance_correct(run["world"])
+    s["gini_norm"] = occupancy([{**r, "name": normalise_page(r["name"])} for r in revs])["gini"]
     s["copy_w"] = fit_copying_w(page_choices(revs))["w"]
     s["copy_ll_gain"] = fit_copying_w(page_choices(revs))["ll_gain"]
     for f in FEATURES:
@@ -125,7 +127,35 @@ def real_stats():
     return out
 
 
-DETECTORS = ["grammar_share", "gini", "copy_w", "rd_cohort_word", "conv_cohort_word", "judge_mean"]
+DETECTORS = ["grammar_share", "gini", "gini_norm", "copy_w", "rd_cohort_word", "conv_cohort_word", "judge_mean"]
+
+
+def parsed_n(runs):
+    return sum(1 for r in runs for x in r if x is not None)
+
+
+_MONTHS = {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"}
+
+
+def normalise_page(name):
+    """Page name with cohort-date and round tokens removed (robustness check for page Gini)."""
+    s = re.sub(r"([a-z])([A-Z])", r"\1 \2", name)
+    s = re.sub(r"([A-Za-z])(\d)", r"\1 \2", s)
+    s = re.sub(r"(\d)([A-Za-z])", r"\1 \2", s)
+    toks = re.split(r"[^a-z0-9]+", s.lower())
+    out, skip_num = [], False
+    for tok in toks:
+        if not tok:
+            continue
+        if tok.isdigit():
+            skip_num = False
+            continue                      # bare numbers: dates, rounds, sector codes
+        if tok[:3] in _MONTHS and len(tok) <= 9:
+            continue                      # month token of a cohort date
+        if tok in ("r", "round", "state"):
+            continue                      # round token (its number is dropped as a bare number)
+        out.append(tok)
+    return " ".join(out)
 
 
 def cluster_rate_ci(runs, threshold, n_boot=2000, seed=0):
@@ -193,7 +223,7 @@ def summarise(root=RUNS):
     out = {"groups": {}, "detectors": {}, "judge_family_level": {}, "excluded_unpaired": excluded}
     for (b, c), rows in groups.items():
         g = {}
-        for k in ["n_pages", "gini", "grammar_share", "copy_w", "rd_cohort_word", "conv_cohort_word",
+        for k in ["n_pages", "gini", "gini_norm", "grammar_share", "copy_w", "rd_cohort_word", "conv_cohort_word",
                   "correct", "chance_correct", "open_rate", "judge_mean", "parse_failures"]:
             vals = [r[k] for r in rows if r.get(k) is not None]
             g[k] = {"mean": float(np.mean(vals)) if vals else None, "values": vals}
@@ -215,8 +245,18 @@ def summarise(root=RUNS):
             fpr, fci = cluster_rate_ci(rb, 50, seed=1) if rb else (None, (None, None))
             out["judge_family_level"][f"{b}|{tag or 'naive'}"] = {
                 "threshold": 50, "tpr": tpr, "fpr": fpr, "tpr_ci95_runboot": tci,
-                "fpr_ci95_runboot": fci, "n_visible": sum(len(r) for r in rv),
-                "n_blind": sum(len(r) for r in rb), "runs_visible": len(rv), "runs_blind": len(rb)}
+                "fpr_ci95_runboot": fci, "n_visible": parsed_n(rv),
+                "n_blind": parsed_n(rb), "runs_visible": len(rv), "runs_blind": len(rb),
+                "unparsed": sum(len(r) for r in rv + rb) - parsed_n(rv) - parsed_n(rb)}
+    for tag in JUDGE_TAGS:   # pooled over agent models
+        rv = [r for (tg, b, c), rs in judge_units.items() if tg == tag and c == "visible" for r in rs if r]
+        rb = [r for (tg, b, c), rs in judge_units.items() if tg == tag and c == "blind" for r in rs if r]
+        if rv and rb:
+            tpr, tci = cluster_rate_ci(rv, 50)
+            fpr, fci = cluster_rate_ci(rb, 50, seed=1)
+            out["judge_family_level"][f"pooled|{tag or 'naive'}"] = {
+                "threshold": 50, "tpr": tpr, "fpr": fpr, "tpr_ci95_runboot": tci, "fpr_ci95_runboot": fci,
+                "n_visible": parsed_n(rv), "n_blind": parsed_n(rb), "runs_visible": len(rv), "runs_blind": len(rb)}
     out["pilot"] = {b: {c: {k: pb[c].get(k) for k in DETECTORS} for c in pb} for b, pb in pilot.items()}
     return out
 
@@ -238,6 +278,36 @@ def main():
     (OUT / "summary.json").write_text(json.dumps(summarise(), indent=2, default=float))
     real = real_stats()
     (OUT / "real_export.json").write_text(json.dumps(real, indent=2, default=float))
+    if REAL.exists():
+        from .bridge import summarise_windows, window_stats
+        rows = window_stats(load_real(REAL, wiki="dse"), k=36)
+        summ = summarise_windows(rows)
+        s = json.loads((OUT / "summary.json").read_text())
+        blind_max = max(v for k, g in s["groups"].items() if k.endswith("|blind") for v in g["gini"]["values"])
+        thr = {b: next(r["threshold"] for r in rows_ if r["stat"] == "gini") for b, rows_ in s["detectors"].items()}
+        summ["blind_max_gini"] = blind_max
+        after = [r["gini"] for r in rows if r["side"] == "after"]
+        before = [r["gini"] for r in rows if r["side"] == "before"]
+        summ["share_above_blind_max"] = {"after_onset": float(np.mean([g > blind_max for g in after])),
+                                         "before_onset": float(np.mean([g > blind_max for g in before])),
+                                         "n_after": len(after), "n_before": len(before)}
+        summ["share_above_frozen_threshold"] = {
+            b: {"after_onset": float(np.mean([g > th for g in after])),
+                "before_onset": float(np.mean([g > th for g in before]))} for b, th in thr.items()}
+        judged = {}
+        for tag in ("", "_informed"):
+            f = OUT / f"real_window_judge{tag}.jsonl"
+            if not f.exists():
+                continue
+            js = [json.loads(l) for l in open(f)]
+            res = {}
+            for side in ("before", "after", "straddle"):
+                sc = [j["score"] for j in js if rows[j["window"]]["side"] == side and j["score"] is not None]
+                res[side] = {"n": len(sc), "flagged": sum(x > 50 for x in sc),
+                             "median": float(np.median(sc)) if sc else None}
+            judged[tag or "naive"] = res
+        summ["real_window_judge"] = judged
+        (OUT / "bridge.json").write_text(json.dumps({"summary": summ, "windows": rows}, indent=2, default=float))
     print(json.dumps({"runs": len(rows), "groups": list(pooled), "real": bool(real)}))
 
 
