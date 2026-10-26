@@ -65,8 +65,8 @@ def fig_stats(path):
               ("copy_w", "copying-model weight w\n(De Marzo page choice)"),
               ("grammar_share", "page names built from own\ntask blocks (share)"),
               ("rd_cohort_word", "exposure-adoption gap,\n'cohort' (Lutje)")]
-    fig, axes = plt.subplots(1, 4, figsize=(9.6, 2.7))
-    for ax, (key, title) in zip(axes, panels):
+    fig, axes = plt.subplots(2, 2, figsize=(6.5, 5.0))
+    for ax, (key, title) in zip(axes.flat, panels):
         for i, (b, label) in enumerate(MODELS):
             for j, (cond, col, mk) in enumerate([("visible", VIS, "o"), ("blind", BLD, "D")]):
                 vals = s.get(f"{b}|{cond}", {}).get(key, {}).get("values", [])
@@ -87,8 +87,8 @@ def fig_stats(path):
         ax.set_axisbelow(True)
     handles = [plt.Line2D([], [], marker="o", ls="", color=VIS, label="can read board"),
                plt.Line2D([], [], marker="D", ls="", markerfacecolor="none", color=BLD, label="cannot read board")]
-    fig.legend(handles=handles, frameon=False, loc="lower center", ncol=2, bbox_to_anchor=(0.5, -0.04))
-    fig.tight_layout(rect=(0, 0.08, 1, 1))
+    fig.legend(handles=handles, frameon=False, loc="lower center", ncol=2, bbox_to_anchor=(0.5, 0.0))
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
     fig.savefig(path, dpi=200)
     fig.savefig(path.with_suffix(".pdf"))
     plt.close(fig)
@@ -98,7 +98,7 @@ def fig_judge_variants(path):
     s = json.loads((OUT / "summary.json").read_text())["judge_family_level"]
     variants = [("naive", "Flash-Lite\nnaive"), ("_informed", "Flash-Lite\nconfound-aware"),
                 ("_strong", "gpt-oss-120b\nnaive"), ("_strong_informed", "gpt-oss-120b\nconfound-aware")]
-    fig, axes = plt.subplots(1, 2, figsize=(9.0, 3.0), sharey=True)
+    fig, axes = plt.subplots(1, 2, figsize=(6.8, 3.2), sharey=True)
     for ax, (b, label) in zip(axes, MODELS):
         for i, (tag, vlabel) in enumerate(variants):
             row = s.get(f"{b}|{tag}")
@@ -111,7 +111,7 @@ def fig_judge_variants(path):
                 ax.vlines(i + dx, ci[0], ci[1], color=col, lw=1.6)
                 ax.scatter([i + dx], [rate], marker=mk, s=40, edgecolor=col, linewidth=1.6,
                            facecolor=col if col == VIS else "none", zorder=3)
-        ax.set_xticks(range(len(variants)), [v[1] for v in variants], fontsize=7.5)
+        ax.set_xticks(range(len(variants)), [v[1] for v in variants], fontsize=7)
         ax.set_title(f"agents: {label}", fontsize=9, color=INK)
         ax.set_ylim(-0.03, 1.03)
         ax.yaxis.grid(True, color=GRID, lw=0.8)
@@ -127,12 +127,44 @@ def fig_judge_variants(path):
     plt.close(fig)
 
 
+def fig_bridge(path):
+    b = json.loads((OUT / "bridge.json").read_text())
+    s = json.loads((OUT / "summary.json").read_text())["groups"]
+    rng = np.random.default_rng(1)
+    fig, axes = plt.subplots(1, 2, figsize=(6.8, 3.3), sharey=True)
+    for ax, key, title in [(axes[0], "gini", "page names as written"),
+                           (axes[1], "gini_norm", "cohort-date and round tokens removed")]:
+        cols = [("real\nbefore", [w[key] for w in b["windows"] if w["side"] == "before"], MUTED, "s", "none"),
+                ("real\nafter", [w[key] for w in b["windows"] if w["side"] == "after"], INK, "s", "none")]
+        for b_, label in MODELS:
+            short = {"gpt-oss-20b": "gpt-oss", "qwen3.8-27b": "qwen"}[label]
+            cols.append((f"{short}\nread", s[f"{b_}|visible"][key]["values"], VIS, "o", VIS))
+            cols.append((f"{short}\nblind", s[f"{b_}|blind"][key]["values"], BLD, "D", "none"))
+        for i, (lab, vals, col, mk, fc) in enumerate(cols):
+            xs = i + rng.uniform(-0.18, 0.18, len(vals))
+            ax.scatter(xs, vals, s=10 if i < 2 else 26, marker=mk, edgecolor=col, facecolor=fc,
+                       linewidth=1.1, alpha=0.6 if i < 2 else 1, zorder=3)
+            if vals:
+                ax.hlines(np.median(vals), i - 0.3, i + 0.3, color=col, lw=2, zorder=4)
+        ax.set_xticks(range(len(cols)), [c[0] for c in cols], fontsize=7)
+        ax.set_title(title, fontsize=8.5, color=INK)
+        ax.yaxis.grid(True, color=GRID, lw=0.8)
+        ax.set_axisbelow(True)
+    axes[0].set_ylabel("page concentration (Gini), 36-agent units")
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    fig.savefig(path.with_suffix(".pdf"))
+    plt.close(fig)
+
+
 def main():
     figs = OUT / "figures"
     figs.mkdir(parents=True, exist_ok=True)
     fig_judge(figs / "fig1_judge_false_alarms.png")
-    fig_stats(figs / "fig2_statistics_by_condition.png")
-    fig_judge_variants(figs / "fig3_judge_variants.png")
+    fig_judge_variants(figs / "fig2_judge_variants.png")
+    fig_stats(figs / "fig3_statistics_by_condition.png")
+    if (OUT / "bridge.json").exists():
+        fig_bridge(figs / "fig4_real_archive_bridge.png")
     print(sorted(p.name for p in figs.iterdir()))
 
 
