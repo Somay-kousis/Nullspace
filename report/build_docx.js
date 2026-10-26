@@ -1,4 +1,5 @@
-// Build report.docx from report.md in the Apart sprint template's layout.
+// Build report.docx from report.md with the official Apart template's settings
+// (Letter, 1" margins, 11 pt Arial at 1.15 lines, Old Standard TT title, 16 pt section headings).
 // Usage: NODE_PATH=<dir with docx installed> node build_docx.js
 const fs = require("fs");
 const path = require("path");
@@ -10,8 +11,8 @@ const {
 const HERE = __dirname;
 const src = fs.readFileSync(path.join(HERE, "report.md"), "utf8");
 const FONT = "Arial";
-const BODY = 20;          // half-points: 10 pt
-const PAGE_W = 12240, MARGIN = 1300, CONTENT_W = PAGE_W - 2 * MARGIN;
+const BODY = 22;          // half-points: 11 pt, as in the official template
+const PAGE_W = 12240, MARGIN = 1440, CONTENT_W = PAGE_W - 2 * MARGIN;
 
 // ---- front matter -----------------------------------------------------------------------
 const fm = {};
@@ -75,7 +76,7 @@ const children = [];
 // Title + sprint footnote (template: footnote on the title)
 children.push(new Paragraph({
   alignment: AlignmentType.CENTER, spacing: { after: 200 },
-  children: [new TextRun({ text: fm.title || "PROJECT TITLE", bold: true, font: FONT, size: 32 }),
+  children: [new TextRun({ text: fm.title || "PROJECT TITLE", bold: true, font: "Old Standard TT", size: 40 }),
              new FootnoteReferenceRun(1)],
 }));
 children.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 0 },
@@ -95,9 +96,9 @@ while (i < lines.length) {
     const t = l.slice(2).trim();
     const isAbstract = t === "Abstract";
     children.push(new Paragraph({
-      heading: HeadingLevel.HEADING_1, keepNext: true, spacing: { before: isAbstract ? 120 : 260, after: 120 },
+      heading: HeadingLevel.HEADING_2, keepNext: true, spacing: { before: isAbstract ? 120 : 360, after: 120 },
       alignment: isAbstract ? AlignmentType.LEFT : undefined,
-      children: [new TextRun({ text: t, bold: true, font: FONT, size: 26 })],
+      children: [new TextRun({ text: t, font: FONT, size: 32, color: "000000" })],
     }));
     i++; continue;
   }
@@ -121,7 +122,7 @@ while (i < lines.length) {
   if (img) {
     const file = path.resolve(HERE, img[2]);
     const { w, h, data } = pngSize(file);
-    const outW = 600, outH = Math.round(outW * h / w);
+    const outW = 450, outH = Math.round(outW * h / w);
     children.push(new Paragraph({ alignment: AlignmentType.CENTER, keepNext: true, spacing: { before: 120, after: 60 },
       children: [new ImageRun({ type: "png", data, transformation: { width: outW, height: outH } })] }));
     const cap = img[1];
@@ -161,6 +162,6 @@ const doc = new Document({
   footnotes: { 1: { children: [new Paragraph({ children: [new TextRun({
     text: "Research conducted at the AI Collusion Research Sprint, October 2026", font: FONT, size: 16 })] })] } },
   sections: [{ properties: { page: { size: { width: PAGE_W, height: 15840 },
-    margin: { top: 1200, bottom: 1200, left: MARGIN, right: MARGIN } } }, children }],
+    margin: { top: 1440, bottom: 1440, left: MARGIN, right: MARGIN } } }, children }],
 });
 Packer.toBuffer(doc).then(b => { fs.writeFileSync(path.join(HERE, "report.docx"), b); console.log("wrote report.docx"); });
