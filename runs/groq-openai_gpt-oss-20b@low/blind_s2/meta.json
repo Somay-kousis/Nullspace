@@ -1,0 +1,16 @@
+{
+  "condition": "blind",
+  "seed": 2,
+  "families": 3,
+  "cohorts": 4,
+  "rounds": 3,
+  "n_agents": 36,
+  "parse_failures": 0,
+  "answered": 36,
+  "correct": 0,
+  "backend": "groq:openai/gpt-oss-20b@low",
+  "gen": {},
+  "wall_seconds": 243.3,
+  "tool_call_failures": 13,
+  "max_tokens": 1500
+}

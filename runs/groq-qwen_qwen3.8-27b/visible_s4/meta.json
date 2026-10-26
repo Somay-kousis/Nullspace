@@ -1,0 +1,16 @@
+{
+  "condition": "visible",
+  "seed": 4,
+  "families": 3,
+  "cohorts": 4,
+  "rounds": 3,
+  "n_agents": 36,
+  "parse_failures": 0,
+  "answered": 36,
+  "correct": 1,
+  "backend": "groq:qwen/qwen3.8-27b",
+  "gen": {},
+  "wall_seconds": 407.8,
+  "tool_call_failures": 0,
+  "max_tokens": 1500
+}

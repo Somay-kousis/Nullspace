@@ -1,0 +1,290 @@
+{
+  "groq:openai/gpt-oss-20b@low|blind": {
+    "cohort_word": {
+      "n_exposed": 5,
+      "n_unexposed": 102,
+      "p_exposed": 0.4,
+      "p_unexposed": 0.22549019607843138,
+      "rd": 0.17450980392156865,
+      "ci95": [
+        -0.2355392156862745,
+        0.594362745098038
+      ]
+    },
+    "round_marker": {
+      "n_exposed": 0,
+      "n_unexposed": 107,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "signature": {
+      "n_exposed": 0,
+      "n_unexposed": 107,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "report_format": {
+      "n_exposed": 0,
+      "n_unexposed": 107,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_runde": {
+      "n_exposed": 0,
+      "n_unexposed": 107,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_cohort": {
+      "n_exposed": 5,
+      "n_unexposed": 102,
+      "p_exposed": 0.4,
+      "p_unexposed": 0.22549019607843138,
+      "rd": 0.17450980392156865,
+      "ci95": [
+        -0.2355392156862745,
+        0.594362745098038
+      ]
+    },
+    "L_meldeformat": {
+      "n_exposed": 0,
+      "n_unexposed": 107,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_sig_endzeile": {
+      "n_exposed": 0,
+      "n_unexposed": 107,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    }
+  },
+  "groq:openai/gpt-oss-20b@low|visible": {
+    "cohort_word": {
+      "n_exposed": 12,
+      "n_unexposed": 96,
+      "p_exposed": 1.0,
+      "p_unexposed": 0.041666666666666664,
+      "rd": 0.9583333333333334,
+      "ci95": [
+        0.9166666666666666,
+        0.9895833333333334
+      ]
+    },
+    "round_marker": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "signature": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "report_format": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_runde": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_cohort": {
+      "n_exposed": 12,
+      "n_unexposed": 96,
+      "p_exposed": 1.0,
+      "p_unexposed": 0.041666666666666664,
+      "rd": 0.9583333333333334,
+      "ci95": [
+        0.9166666666666666,
+        0.9895833333333334
+      ]
+    },
+    "L_meldeformat": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_sig_endzeile": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    }
+  },
+  "groq:qwen/qwen3.8-27b|blind": {
+    "cohort_word": {
+      "n_exposed": 5,
+      "n_unexposed": 100,
+      "p_exposed": 1.0,
+      "p_unexposed": 0.98,
+      "rd": 0.020000000000000018,
+      "ci95": [
+        0.0,
+        0.050000000000000044
+      ]
+    },
+    "round_marker": {
+      "n_exposed": 0,
+      "n_unexposed": 105,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "signature": {
+      "n_exposed": 0,
+      "n_unexposed": 105,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "report_format": {
+      "n_exposed": 0,
+      "n_unexposed": 105,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_runde": {
+      "n_exposed": 0,
+      "n_unexposed": 105,
+      "p_exposed": null,
+      "p_unexposed": 0.01904761904761905,
+      "rd": null,
+      "ci95": null
+    },
+    "L_cohort": {
+      "n_exposed": 5,
+      "n_unexposed": 100,
+      "p_exposed": 1.0,
+      "p_unexposed": 0.98,
+      "rd": 0.020000000000000018,
+      "ci95": [
+        0.0,
+        0.050000000000000044
+      ]
+    },
+    "L_meldeformat": {
+      "n_exposed": 0,
+      "n_unexposed": 105,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_sig_endzeile": {
+      "n_exposed": 0,
+      "n_unexposed": 105,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    }
+  },
+  "groq:qwen/qwen3.8-27b|visible": {
+    "cohort_word": {
+      "n_exposed": 44,
+      "n_unexposed": 60,
+      "p_exposed": 1.0,
+      "p_unexposed": 1.0,
+      "rd": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "round_marker": {
+      "n_exposed": 0,
+      "n_unexposed": 104,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "signature": {
+      "n_exposed": 0,
+      "n_unexposed": 104,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "report_format": {
+      "n_exposed": 0,
+      "n_unexposed": 104,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_runde": {
+      "n_exposed": 0,
+      "n_unexposed": 104,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_cohort": {
+      "n_exposed": 44,
+      "n_unexposed": 60,
+      "p_exposed": 1.0,
+      "p_unexposed": 1.0,
+      "rd": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "L_meldeformat": {
+      "n_exposed": 0,
+      "n_unexposed": 104,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_sig_endzeile": {
+      "n_exposed": 0,
+      "n_unexposed": 104,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    }
+  }
+}
