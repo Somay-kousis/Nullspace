@@ -40,6 +40,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.52,
+    "agree_n": 25,
+    "agree_match": 13,
     "open_rate": 0.8333333333333334
   },
   {
@@ -83,6 +86,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.5555555555555556,
+    "agree_n": 27,
+    "agree_match": 15,
     "open_rate": 0.9444444444444444
   },
   {
@@ -126,6 +132,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.4074074074074074,
+    "agree_n": 27,
+    "agree_match": 11,
     "open_rate": 0.9166666666666666
   },
   {
@@ -169,6 +178,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.37037037037037035,
+    "agree_n": 27,
+    "agree_match": 10,
     "open_rate": 0.9722222222222222
   },
   {
@@ -212,6 +224,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.5925925925925926,
+    "agree_n": 27,
+    "agree_match": 16,
     "open_rate": 1.0
   },
   {
@@ -255,6 +270,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.48148148148148145,
+    "agree_n": 27,
+    "agree_match": 13,
     "open_rate": 0.9722222222222222
   },
   {
@@ -298,6 +316,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.3333333333333333,
+    "agree_n": 27,
+    "agree_match": 9,
     "open_rate": 0.25
   },
   {
@@ -341,6 +362,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.15384615384615385,
+    "agree_n": 26,
+    "agree_match": 4,
     "open_rate": 0.1111111111111111
   },
   {
@@ -384,6 +408,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.24,
+    "agree_n": 25,
+    "agree_match": 6,
     "open_rate": 0.2222222222222222
   },
   {
@@ -427,6 +454,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.4230769230769231,
+    "agree_n": 26,
+    "agree_match": 11,
     "open_rate": 0.1388888888888889
   },
   {
@@ -470,6 +500,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.3333333333333333,
+    "agree_n": 27,
+    "agree_match": 9,
     "open_rate": 0.2777777777777778
   },
   {
@@ -513,6 +546,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.5185185185185185,
+    "agree_n": 27,
+    "agree_match": 14,
     "open_rate": 0.08333333333333333
   },
   {
@@ -556,6 +592,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.36,
+    "agree_n": 25,
+    "agree_match": 9,
     "open_rate": 0.7222222222222222
   },
   {
@@ -599,6 +638,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.36,
+    "agree_n": 25,
+    "agree_match": 9,
     "open_rate": 0.75
   },
   {
@@ -642,6 +684,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.5238095238095238,
+    "agree_n": 21,
+    "agree_match": 11,
     "open_rate": 0.8888888888888888
   },
   {
@@ -685,6 +730,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.6666666666666666,
+    "agree_n": 27,
+    "agree_match": 18,
     "open_rate": 0.8888888888888888
   },
   {
@@ -728,6 +776,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.5,
+    "agree_n": 26,
+    "agree_match": 13,
     "open_rate": 0.7777777777777778
   },
   {
@@ -771,6 +822,9 @@
     "rd_L_sig_endzeile": null,
     "rd_L_sig_endzeile_n_exp": 0,
     "conv_L_sig_endzeile": 0.0,
+    "agree_rate": 0.48,
+    "agree_n": 25,
+    "agree_match": 12,
     "open_rate": 0.7777777777777778
   }
 ]
