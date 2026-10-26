@@ -98,6 +98,13 @@ The same extractors run on the real export (`revisions.jsonl`, `dse` wiki), whic
 - The judge is itself a model.
 - We test what the statistics can distinguish, not what happened in the real incident.
 
+## Real-archive bridge (added 2026-10-26)
+- **Why:** occupancy statistics depend on scale, and the real wiki held thousands of agents. So the real dse log is cut into consecutive, non-overlapping windows of 36 distinct named agents (the agents per simulated run), excluding Lütje's three infrastructure pages (`nullspace/bridge.py`).
+- **Per window:** page Gini and the copying weight w.
+- **Onset split:** windows are split at Lütje's onset, 2026-06-16T09:27:10Z. Before it, 7 of 1,305 deltas carried a coordination topic, which makes it a low-coordination comparison inside the real incident. It is not a no-channel control, because agents could read the pages they edited.
+- **Judges:** both judge variants (gemini-3.5-flash-lite) score all 18 pre-onset windows and a fixed random sample (seed 0) of 18 post-onset windows. Each window is shown as the text each agent added (its delta).
+- **Outputs:** `analysis/bridge.json`, `analysis/real_window_judge*.jsonl`, Figure 4.
+
 ## Run history
 - **First pass, discarded (2026-10-25/26):** world generation shuffled cohort dates by iterating a `set`, so the same seed gave different cohort dates in different processes. Visible and blind runs were not truly paired, and runs could not be reproduced exactly. There was no information leak, and each run saved its own world. An independent code review found it. Fixed, with a cross-process test. All runs were redone. The old runs are kept in `superseded/` for transparency and are not used in any number.
 - **Also from that review:** thresholds are now frozen per backend on that backend's own pilot; judge intervals use a bootstrap over runs; undefined statistics count as "no flag"; real-data deltas treat empty hunks as null edits; 11 real pages with unpublished history are excluded from exposure.

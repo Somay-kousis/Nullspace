@@ -14,7 +14,7 @@ Neither has a condition in which agents cannot read each other.
 
 The published evidence statistics and an LLM judge are computed on both conditions. Whatever they report for blind runs is a false positive by construction. The same statistics also run on the real export.
 
-Design, conditions, statistics and limitations: [DESIGN.md](DESIGN.md).
+Design, conditions, statistics and limitations: [DESIGN.md](DESIGN.md). Report: [report/report.pdf](report/report.pdf) (source `report/report.md`; build with `report/build_docx.js`, then LibreOffice to PDF).
 
 ## Reproduce
 
@@ -29,6 +29,7 @@ sh scripts_runall.sh "groq:qwen/qwen3.8-27b"
 .venv/bin/python -m nullspace.judge --provider groq --model openai/gpt-oss-120b --tag _strong_informed --informed
 .venv/bin/python -m nullspace.analyze   # writes analysis/*.json
 .venv/bin/python -m nullspace.figures   # writes analysis/figures/
+# real-window judges (needs the export): see nullspace/bridge.py judge_real_windows
 ```
 
 - **Keys:** read from environment variables or `~/.config/nullspace.env`: `GROQ_API_KEYS` (comma-separated) and `GEMINI_API_KEY`.
@@ -47,5 +48,7 @@ sh scripts_runall.sh "groq:qwen/qwen3.8-27b"
 | `nullspace/judge.py` | LLM judge (naive and confound-aware) |
 | `nullspace/realdata.py` | loader for the real export (deltas from diff hunks) |
 | `nullspace/analyze.py`, `figures.py` | every reported number and figure |
+| `nullspace/bridge.py` | the real archive scored in 36-agent windows, before and after the coordination onset |
+| `report/` | the sprint report: Markdown source, docx builder, PDF |
 | `runs/` | raw logs: every prompt, response and revision, plus the world |
 | `superseded/` | first-pass runs, discarded because of a hash-seed bug in world generation (see DESIGN.md) |
