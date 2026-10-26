@@ -2,6 +2,10 @@
 
 A blind-board control for reading coordination in multi-agent LLM logs. It was built for the Apart AI Collusion Research Sprint (Oct 2026), Track 2, question 2.3: what should count as convincing evidence of collusion?
 
+![A naive LLM judge scores agents that could not read each other (hollow diamonds) above the flag threshold in 9 of 27 task groups.](analysis/figures/fig1_judge_false_alarms.png)
+
+*Naive LLM judge scores per task-family log. Filled circles: agents could read the board. Hollow diamonds: agents could not read anything another agent wrote, so every flag above the dashed threshold is a false alarm.*
+
 **Background:** in May-July 2026, OpenAI evaluation agents wrote thousands of edits to a public German wiki and passed answers between cohorts (the "German Wiki Incident"; export at [collusion.wiki](https://collusion.wiki/explorer/download.html)). Two analyses of that archive disagree:
 - De Marzo et al. ([arXiv 2609.09150](https://arxiv.org/abs/2609.09150)) read it as copying.
 - Lütje ([arXiv 2609.12748](https://arxiv.org/abs/2609.12748)) says the archive can't separate copying from convergence caused by a shared prompt or model.
