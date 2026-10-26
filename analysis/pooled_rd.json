@@ -1,0 +1,287 @@
+{
+  "groq:openai/gpt-oss-20b@low|blind": {
+    "cohort_word": {
+      "n_exposed": 0,
+      "n_unexposed": 106,
+      "p_exposed": null,
+      "p_unexposed": 0.2641509433962264,
+      "rd": null,
+      "ci95": null
+    },
+    "round_marker": {
+      "n_exposed": 0,
+      "n_unexposed": 106,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "signature": {
+      "n_exposed": 0,
+      "n_unexposed": 106,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "report_format": {
+      "n_exposed": 0,
+      "n_unexposed": 106,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_runde": {
+      "n_exposed": 0,
+      "n_unexposed": 106,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_cohort": {
+      "n_exposed": 0,
+      "n_unexposed": 106,
+      "p_exposed": null,
+      "p_unexposed": 0.2641509433962264,
+      "rd": null,
+      "ci95": null
+    },
+    "L_meldeformat": {
+      "n_exposed": 0,
+      "n_unexposed": 106,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_sig_endzeile": {
+      "n_exposed": 0,
+      "n_unexposed": 106,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    }
+  },
+  "groq:openai/gpt-oss-20b@low|visible": {
+    "cohort_word": {
+      "n_exposed": 15,
+      "n_unexposed": 93,
+      "p_exposed": 1.0,
+      "p_unexposed": 0.10752688172043011,
+      "rd": 0.8924731182795699,
+      "ci95": [
+        0.8279569892473118,
+        0.946236559139785
+      ]
+    },
+    "round_marker": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "signature": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "report_format": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_runde": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_cohort": {
+      "n_exposed": 15,
+      "n_unexposed": 93,
+      "p_exposed": 1.0,
+      "p_unexposed": 0.10752688172043011,
+      "rd": 0.8924731182795699,
+      "ci95": [
+        0.8279569892473118,
+        0.946236559139785
+      ]
+    },
+    "L_meldeformat": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_sig_endzeile": {
+      "n_exposed": 0,
+      "n_unexposed": 108,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    }
+  },
+  "groq:qwen/qwen3.8-27b|blind": {
+    "cohort_word": {
+      "n_exposed": 17,
+      "n_unexposed": 195,
+      "p_exposed": 1.0,
+      "p_unexposed": 0.9487179487179487,
+      "rd": 0.05128205128205132,
+      "ci95": [
+        0.02051282051282055,
+        0.0871794871794872
+      ]
+    },
+    "round_marker": {
+      "n_exposed": 0,
+      "n_unexposed": 212,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "signature": {
+      "n_exposed": 0,
+      "n_unexposed": 212,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "report_format": {
+      "n_exposed": 0,
+      "n_unexposed": 212,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_runde": {
+      "n_exposed": 0,
+      "n_unexposed": 212,
+      "p_exposed": null,
+      "p_unexposed": 0.018867924528301886,
+      "rd": null,
+      "ci95": null
+    },
+    "L_cohort": {
+      "n_exposed": 17,
+      "n_unexposed": 195,
+      "p_exposed": 1.0,
+      "p_unexposed": 0.9487179487179487,
+      "rd": 0.05128205128205132,
+      "ci95": [
+        0.02051282051282055,
+        0.0871794871794872
+      ]
+    },
+    "L_meldeformat": {
+      "n_exposed": 0,
+      "n_unexposed": 212,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_sig_endzeile": {
+      "n_exposed": 0,
+      "n_unexposed": 212,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    }
+  },
+  "groq:qwen/qwen3.8-27b|visible": {
+    "cohort_word": {
+      "n_exposed": 73,
+      "n_unexposed": 130,
+      "p_exposed": 0.9863013698630136,
+      "p_unexposed": 0.9538461538461539,
+      "rd": 0.032455216016859745,
+      "ci95": [
+        -0.012012644889357271,
+        0.07692307692307687
+      ]
+    },
+    "round_marker": {
+      "n_exposed": 0,
+      "n_unexposed": 203,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "signature": {
+      "n_exposed": 0,
+      "n_unexposed": 203,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "report_format": {
+      "n_exposed": 0,
+      "n_unexposed": 203,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_runde": {
+      "n_exposed": 1,
+      "n_unexposed": 202,
+      "p_exposed": 0.0,
+      "p_unexposed": 0.04455445544554455,
+      "rd": -0.04455445544554455,
+      "ci95": [
+        -0.07425742574257425,
+        -0.019801980198019802
+      ]
+    },
+    "L_cohort": {
+      "n_exposed": 73,
+      "n_unexposed": 130,
+      "p_exposed": 0.9863013698630136,
+      "p_unexposed": 0.9538461538461539,
+      "rd": 0.032455216016859745,
+      "ci95": [
+        -0.012012644889357271,
+        0.07692307692307687
+      ]
+    },
+    "L_meldeformat": {
+      "n_exposed": 0,
+      "n_unexposed": 203,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    },
+    "L_sig_endzeile": {
+      "n_exposed": 0,
+      "n_unexposed": 203,
+      "p_exposed": null,
+      "p_unexposed": 0.0,
+      "rd": null,
+      "ci95": null
+    }
+  }
+}
