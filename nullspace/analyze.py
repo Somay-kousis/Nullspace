@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .evidence import exposure_adoption_rd, first_line_convergence, fit_copying_w, occupancy
+from .evidence import answer_agreement, exposure_adoption_rd, first_line_convergence, fit_copying_w, occupancy
 from .features import extract, pagename_grammar
 from .realdata import load_real
 
@@ -71,6 +71,30 @@ def detector_table(stat, pilot, visible_vals, blind_vals, undefined_as_no_flag=F
     return row
 
 
+def answers_from_run(run):
+    """One record per answered call 2: who, which family and item (= round), when, what."""
+    world = {w["slot_id"]: w for w in run["world"]}
+    out = []
+    for p in run["prompts"]:
+        if p["call"] != 2:
+            continue
+        w = world[p["slot_id"]]
+        out.append({"label": p["label"], "family": w["family"], "item": w["round"],
+                    "time": w["arrival"], "answer": p.get("answer") or ""})
+    return out
+
+
+def paired_sign_flip_p(diffs):
+    """Exact one-sided paired sign-flip test: share of sign assignments with sum >= observed."""
+    if not diffs:
+        return None
+    from itertools import product
+    obs = sum(diffs)
+    hits = sum(sum(s * d for s, d in zip(signs, diffs)) >= obs - 1e-12
+               for signs in product((1, -1), repeat=len(diffs)))
+    return hits / 2 ** len(diffs)
+
+
 def chance_correct(world, n_states=50):
     """Expected correct answers if every agent guessed uniformly among unrevealed states."""
     if not world or any("known_items" not in w for w in world):
@@ -102,6 +126,8 @@ def run_stats(run):
         e2 = exposure_adoption_rd(revs, f, n_boot=1000)
         s[f"rd_{f}"], s[f"rd_{f}_n_exp"] = e2["rd"], e2["n_exposed"]
         s[f"conv_{f}"] = first_line_convergence(revs, f, n_windows=3)["convergence"]
+    ag = answer_agreement(answers_from_run(run))
+    s["agree_rate"], s["agree_n"], s["agree_match"] = ag["rate"], ag["n_scored"], ag["n_match"]
     opened = [p for p in run["prompts"] if p["call"] == 1]
     s["open_rate"] = np.mean([bool(p.get("opened")) for p in opened]) if opened else None
     return s
@@ -127,7 +153,8 @@ def real_stats():
     return out
 
 
-DETECTORS = ["grammar_share", "gini", "gini_norm", "copy_w", "rd_cohort_word", "conv_cohort_word", "judge_mean"]
+DETECTORS = ["grammar_share", "gini", "gini_norm", "copy_w", "rd_cohort_word", "conv_cohort_word", "judge_mean",
+             "agree_rate"]
 
 
 def parsed_n(runs):
@@ -184,7 +211,7 @@ def judge_scores(d, tag=""):
 JUDGE_TAGS = ["", "_informed", "_strong", "_strong_informed"]
 # "correct" is the oracle (needs the hidden answers); the rest are what an auditor sees
 REPLAY_STATS = ["gini", "gini_norm", "grammar_share", "copy_w", "rd_cohort_word", "conv_cohort_word",
-                "judge_mean", "correct"]
+                "judge_mean", "agree_rate", "correct"]
 
 
 def run_dirs(root=RUNS):
@@ -226,7 +253,7 @@ def summarise(root=RUNS):
     out = {"groups": {}, "detectors": {}, "judge_family_level": {}, "excluded_unpaired": excluded}
     for (b, c), rows in groups.items():
         g = {}
-        for k in ["n_pages", "gini", "gini_norm", "grammar_share", "copy_w", "rd_cohort_word", "conv_cohort_word",
+        for k in ["n_pages", "gini", "gini_norm", "grammar_share", "copy_w", "rd_cohort_word", "conv_cohort_word", "agree_rate",
                   "correct", "chance_correct", "open_rate", "judge_mean", "parse_failures"]:
             vals = [r[k] for r in rows if r.get(k) is not None]
             g[k] = {"mean": float(np.mean(vals)) if vals else None, "values": vals}
@@ -272,6 +299,23 @@ def main():
     for d in main_dirs:
         rows.append({"dir": str(d.relative_to(ROOT)), **run_stats(load_run(d))})
     (OUT / "per_run.json").write_text(json.dumps(rows, indent=2, default=float))
+    by = {(r["backend"], r["seed"], r["condition"]): r for r in rows}
+    pairs = sorted({(b, s) for b, s, _ in by if (b, s, "visible") in by and (b, s, "blind") in by})
+    diffs = [by[(b, s, "visible")]["correct"] - by[(b, s, "blind")]["correct"] for b, s in pairs]
+    agree = {}
+    for key in sorted({f"{r['backend']}|{r['condition']}" for r in rows}) + ["pooled|visible", "pooled|blind"]:
+        b, c = key.split("|")
+        rs = [r for r in rows if r["condition"] == c and (b == "pooled" or r["backend"] == b) and r["agree_n"]]
+        units = [[1.0] * r["agree_match"] + [0.0] * (r["agree_n"] - r["agree_match"]) for r in rs]
+        rate, ci = cluster_rate_ci(units, 0.5, seed=0) if units else (None, (None, None))
+        agree[key] = {"runs": len(rs), "n_scored": sum(r["agree_n"] for r in rs),
+                      "n_match": sum(r["agree_match"] for r in rs), "rate": rate, "ci95_runboot": ci}
+    (OUT / "agreement.json").write_text(json.dumps(agree, indent=2, default=float))
+    (OUT / "ground_truth_test.json").write_text(json.dumps({
+        "n_pairs": len(diffs), "visible_more": sum(x > 0 for x in diffs), "ties": sum(x == 0 for x in diffs),
+        "blind_more": sum(x < 0 for x in diffs), "sign_flip_p_one_sided": paired_sign_flip_p(diffs),
+        "blind_correct_total": sum(by[(b, s, "blind")]["correct"] for b, s in pairs),
+        "blind_chance_total": sum(by[(b, s, "blind")]["chance_correct"] for b, s in pairs)}, indent=2))
     groups = {}
     for d in main_dirs:
         run = load_run(d)

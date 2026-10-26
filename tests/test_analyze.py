@@ -162,3 +162,24 @@ def test_page_names_normalised_strip_cohort_and_round_tokens():
     assert normalise_page("Sector61R2Live") == normalise_page("Sector61R3Live")
     assert normalise_page("Grocery_Round_2_Feb21") == normalise_page("grocery round 3 feb22")
     assert normalise_page("GrocerySequence") != normalise_page("ClothingSequence")
+
+
+# Exact paired sign-flip test (spec: one-sided p = share of the 2^n sign assignments
+# whose summed difference is >= the observed sum; zero differences flip to themselves).
+from nullspace.analyze import paired_sign_flip_p
+
+
+def test_sign_flip_all_positive():
+    assert paired_sign_flip_p([1, 1, 1]) == pytest.approx(1 / 8)
+
+
+def test_sign_flip_with_tie():
+    assert paired_sign_flip_p([2, 0]) == pytest.approx(2 / 4)
+
+
+def test_sign_flip_reversal_raises_p():
+    assert paired_sign_flip_p([3, -3]) == pytest.approx(3 / 4)
+
+
+def test_sign_flip_empty_is_none():
+    assert paired_sign_flip_p([]) is None

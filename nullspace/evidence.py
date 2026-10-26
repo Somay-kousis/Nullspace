@@ -95,3 +95,20 @@ def occupancy(revs):
         n = x.size
         gini = float((2 * np.arange(1, n + 1) - n - 1) @ x / (n * x.sum()))
     return {"labels_per_page": counts, "gini": gini, "n_pages": len(counts)}
+
+
+def answer_agreement(answers):
+    """Share of answers equal to an earlier answer by another agent for the same (family, item).
+
+    Spec in tests/test_agreement.py. Needs only agent outputs and their order, not the key."""
+    norm = lambda s: (s or "").strip().lower()
+    given = [x for x in answers if norm(x["answer"])]
+    n_scored = n_match = 0
+    for x in given:
+        earlier = {norm(e["answer"]) for e in given
+                   if e["label"] != x["label"] and e["family"] == x["family"]
+                   and e["item"] == x["item"] and e["time"] < x["time"]}
+        if earlier:
+            n_scored += 1
+            n_match += norm(x["answer"]) in earlier
+    return {"n_scored": n_scored, "n_match": n_match, "rate": n_match / n_scored if n_scored else None}
