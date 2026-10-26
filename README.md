@@ -14,7 +14,16 @@ Neither has a condition in which agents cannot read each other.
 
 The published evidence statistics and an LLM judge are computed on both conditions. Whatever they report for blind runs is a false positive by construction. The same statistics also run on the real export.
 
-Design, conditions, statistics and limitations: [DESIGN.md](DESIGN.md). Report: [report/report.pdf](report/report.pdf) (source `report/report.md`; build with `report/build_docx.js`, then LibreOffice to PDF).
+**Report:** [report/Nullspace_final.pdf](report/Nullspace_final.pdf). Design, conditions, statistics and limitations: [DESIGN.md](DESIGN.md).
+
+## Findings
+
+- **Transmission happens only when agents can read.** Correct answers to future rounds: 3.67 (gpt-oss-20b) and 2.50 (qwen3.8-27b) per visible run, 1.00 and 0.33 per blind run, 0.75 by chance. Visible beat their paired blind run in 6 of 9 seeds with no reversals (one-sided sign-flip p = 0.016). `analysis/ground_truth_test.json`
+- **A naive LLM judge calls 9 of 27 blind task groups coordinated** (33%, run-bootstrap 15 to 56%), citing a sequence the task gave every agent. Warning it about the shared prompt removes those false alarms and cuts detection from 81% to 30%. `analysis/summary.json`
+- **Page concentration separates the conditions only through cohort dates in page names**; with those tokens removed, blind agents converge as much as visible ones.
+- **Repeating earlier answers is not evidence of contact:** blind agents match an earlier answer about as often as visible ones (gpt-oss 49% vs 48%, Qwen 34% vs 48%). `analysis/agreement.json`
+- **Blind-replay calibration works:** scoring judges against blind runs of the same agents holds every variant to at most 1 false alarm in 27 groups; the best keeps 16 of 27 detections. `analysis/replay.json`
+- **Real archive:** the naive judge flags 11 of 17 windows from before the documented coordination onset (0 of 17 when warned). `analysis/bridge.json`
 
 ## Reproduce
 
