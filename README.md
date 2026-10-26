@@ -49,6 +49,7 @@ sh scripts_runall.sh "groq:qwen/qwen3.8-27b"
 | `nullspace/realdata.py` | loader for the real export (deltas from diff hunks) |
 | `nullspace/analyze.py`, `figures.py` | every reported number and figure |
 | `nullspace/bridge.py` | the real archive scored in 36-agent windows, before and after the coordination onset |
+| `nullspace/replay.py` | auditor blind-replay test: each seed scored against the other seeds' blind runs (`analysis/replay.json`) |
 | `report/` | the sprint report: Markdown source, docx builder, PDF |
 | `runs/` | raw logs: every prompt, response and revision, plus the world |
 | `superseded/` | first-pass runs, discarded because of a hash-seed bug in world generation (see DESIGN.md) |
