@@ -1,0 +1,1386 @@
+{
+  "groq:openai/gpt-oss-20b@low": {
+    "gini": {
+      "p_visible": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "p_blind": [
+        1.0,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "visible_flagged": 3,
+      "n_visible": 3,
+      "blind_flagged": 1,
+      "n_blind": 3,
+      "min_p": 0.3333333333333333
+    },
+    "gini_norm": {
+      "p_visible": [
+        0.6666666666666666,
+        1.0,
+        0.3333333333333333
+      ],
+      "p_blind": [
+        0.6666666666666666,
+        1.0,
+        0.3333333333333333
+      ],
+      "visible_flagged": 1,
+      "n_visible": 3,
+      "blind_flagged": 1,
+      "n_blind": 3,
+      "min_p": 0.3333333333333333
+    },
+    "grammar_share": {
+      "p_visible": [
+        0.6666666666666666,
+        1.0,
+        0.3333333333333333
+      ],
+      "p_blind": [
+        0.3333333333333333,
+        1.0,
+        0.6666666666666666
+      ],
+      "visible_flagged": 1,
+      "n_visible": 3,
+      "blind_flagged": 1,
+      "n_blind": 3,
+      "min_p": 0.3333333333333333
+    },
+    "copy_w": {
+      "p_visible": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "p_blind": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible_flagged": 3,
+      "n_visible": 3,
+      "blind_flagged": 0,
+      "n_blind": 3,
+      "min_p": 0.3333333333333333
+    },
+    "rd_cohort_word": {
+      "p_visible": [
+        0.3333333333333333,
+        1.0,
+        0.3333333333333333
+      ],
+      "p_blind": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible_flagged": 2,
+      "n_visible": 3,
+      "blind_flagged": 0,
+      "n_blind": 3,
+      "min_p": 0.3333333333333333
+    },
+    "conv_cohort_word": {
+      "p_visible": [
+        0.6666666666666666,
+        1.0,
+        0.3333333333333333
+      ],
+      "p_blind": [
+        1.0,
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "visible_flagged": 1,
+      "n_visible": 3,
+      "blind_flagged": 1,
+      "n_blind": 3,
+      "min_p": 0.3333333333333333
+    },
+    "judge_mean": {
+      "p_visible": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "p_blind": [
+        1.0,
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "visible_flagged": 2,
+      "n_visible": 3,
+      "blind_flagged": 1,
+      "n_blind": 3,
+      "min_p": 0.3333333333333333
+    },
+    "correct": {
+      "p_visible": [
+        1.0,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "p_blind": [
+        1.0,
+        1.0,
+        0.3333333333333333
+      ],
+      "visible_flagged": 2,
+      "n_visible": 3,
+      "blind_flagged": 1,
+      "n_blind": 3,
+      "min_p": 0.3333333333333333
+    },
+    "judge:naive": {
+      "visible_flagged": 5,
+      "n_visible": 9,
+      "blind_flagged": 0,
+      "n_blind": 9,
+      "flags": {
+        "visible": [
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            true,
+            false,
+            true
+          ],
+          [
+            false,
+            true,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "thresholds": {
+        "1": 95,
+        "2": 95,
+        "3": 95
+      },
+      "visible_ci95_runboot": [
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.0
+      ]
+    },
+    "judge:informed": {
+      "visible_flagged": 1,
+      "n_visible": 9,
+      "blind_flagged": 0,
+      "n_blind": 9,
+      "flags": {
+        "visible": [
+          [
+            false,
+            true,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "thresholds": {
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "visible_ci95_runboot": [
+        0.0,
+        0.3333333333333333
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.0
+      ]
+    },
+    "judge:strong": {
+      "visible_flagged": 8,
+      "n_visible": 8,
+      "blind_flagged": 1,
+      "n_blind": 9,
+      "flags": {
+        "visible": [
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            true
+          ]
+        ]
+      },
+      "thresholds": {
+        "1": 45,
+        "2": 45,
+        "3": 40
+      },
+      "visible_ci95_runboot": [
+        1.0,
+        1.0
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.3333333333333333
+      ]
+    },
+    "judge:strong_informed": {
+      "visible_flagged": 5,
+      "n_visible": 9,
+      "blind_flagged": 1,
+      "n_blind": 9,
+      "flags": {
+        "visible": [
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "thresholds": {
+        "1": 30,
+        "2": 60,
+        "3": 60
+      },
+      "visible_ci95_runboot": [
+        0.0,
+        1.0
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.3333333333333333
+      ]
+    }
+  },
+  "groq:qwen/qwen3.8-27b": {
+    "gini": {
+      "p_visible": [
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.16666666666666666
+      ],
+      "p_blind": [
+        0.8333333333333334,
+        0.5,
+        1.0,
+        0.16666666666666666,
+        0.3333333333333333,
+        0.8333333333333334
+      ],
+      "visible_flagged": 6,
+      "n_visible": 6,
+      "blind_flagged": 1,
+      "n_blind": 6,
+      "min_p": 0.16666666666666666
+    },
+    "gini_norm": {
+      "p_visible": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "p_blind": [
+        0.5,
+        1.0,
+        0.3333333333333333,
+        0.8333333333333334,
+        0.6666666666666666,
+        0.16666666666666666
+      ],
+      "visible_flagged": 0,
+      "n_visible": 6,
+      "blind_flagged": 1,
+      "n_blind": 6,
+      "min_p": 0.16666666666666666
+    },
+    "grammar_share": {
+      "p_visible": [
+        0.6666666666666666,
+        0.16666666666666666,
+        1.0,
+        0.16666666666666666,
+        0.6666666666666666,
+        0.16666666666666666
+      ],
+      "p_blind": [
+        0.3333333333333333,
+        0.5,
+        0.8333333333333334,
+        0.6666666666666666,
+        1.0,
+        0.16666666666666666
+      ],
+      "visible_flagged": 3,
+      "n_visible": 6,
+      "blind_flagged": 1,
+      "n_blind": 6,
+      "min_p": 0.16666666666666666
+    },
+    "copy_w": {
+      "p_visible": [
+        1.0,
+        1.0,
+        0.16666666666666666,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "p_blind": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "visible_flagged": 1,
+      "n_visible": 6,
+      "blind_flagged": 0,
+      "n_blind": 6,
+      "min_p": 0.16666666666666666
+    },
+    "rd_cohort_word": {
+      "p_visible": [
+        1.0,
+        0.16666666666666666,
+        1.0,
+        0.6666666666666666,
+        1.0,
+        0.5
+      ],
+      "p_blind": [
+        1.0,
+        0.8333333333333334,
+        0.16666666666666666,
+        0.6666666666666666,
+        0.3333333333333333,
+        0.5
+      ],
+      "visible_flagged": 1,
+      "n_visible": 6,
+      "blind_flagged": 1,
+      "n_blind": 6,
+      "min_p": 0.16666666666666666
+    },
+    "conv_cohort_word": {
+      "p_visible": [
+        0.6666666666666666,
+        0.6666666666666666,
+        1.0,
+        0.3333333333333333,
+        0.8333333333333334,
+        0.8333333333333334
+      ],
+      "p_blind": [
+        0.6666666666666666,
+        0.6666666666666666,
+        0.16666666666666666,
+        0.6666666666666666,
+        0.8333333333333334,
+        1.0
+      ],
+      "visible_flagged": 0,
+      "n_visible": 6,
+      "blind_flagged": 1,
+      "n_blind": 6,
+      "min_p": 0.16666666666666666
+    },
+    "judge_mean": {
+      "p_visible": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.16666666666666666,
+        0.3333333333333333,
+        0.16666666666666666,
+        0.16666666666666666
+      ],
+      "p_blind": [
+        0.5,
+        1.0,
+        0.5,
+        0.8333333333333334,
+        0.6666666666666666,
+        0.16666666666666666
+      ],
+      "visible_flagged": 3,
+      "n_visible": 6,
+      "blind_flagged": 1,
+      "n_blind": 6,
+      "min_p": 0.16666666666666666
+    },
+    "correct": {
+      "p_visible": [
+        0.16666666666666666,
+        0.5,
+        0.16666666666666666,
+        0.5,
+        0.3333333333333333,
+        0.16666666666666666
+      ],
+      "p_blind": [
+        0.3333333333333333,
+        1.0,
+        1.0,
+        1.0,
+        0.3333333333333333,
+        1.0
+      ],
+      "visible_flagged": 3,
+      "n_visible": 6,
+      "blind_flagged": 0,
+      "n_blind": 6,
+      "min_p": 0.16666666666666666
+    },
+    "judge:naive": {
+      "visible_flagged": 6,
+      "n_visible": 18,
+      "blind_flagged": 0,
+      "n_blind": 18,
+      "flags": {
+        "visible": [
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            false,
+            false,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "thresholds": {
+        "1": 95,
+        "2": 95,
+        "3": 95,
+        "4": 95,
+        "5": 95,
+        "6": 95
+      },
+      "visible_ci95_runboot": [
+        0.1111111111111111,
+        0.5555555555555556
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.0
+      ]
+    },
+    "judge:informed": {
+      "visible_flagged": 8,
+      "n_visible": 18,
+      "blind_flagged": 1,
+      "n_blind": 18,
+      "flags": {
+        "visible": [
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            true
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            false,
+            true,
+            true
+          ],
+          [
+            true,
+            false,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "thresholds": {
+        "1": 15,
+        "2": 15,
+        "3": 15,
+        "4": 0,
+        "5": 15,
+        "6": 15
+      },
+      "visible_ci95_runboot": [
+        0.2222222222222222,
+        0.6111111111111112
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.16666666666666666
+      ]
+    },
+    "judge:strong": {
+      "visible_flagged": 4,
+      "n_visible": 18,
+      "blind_flagged": 0,
+      "n_blind": 18,
+      "flags": {
+        "visible": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            true
+          ],
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "thresholds": {
+        "1": 80,
+        "2": 80,
+        "3": 80,
+        "4": 80,
+        "5": 80,
+        "6": 80
+      },
+      "visible_ci95_runboot": [
+        0.1111111111111111,
+        0.3333333333333333
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.0
+      ]
+    },
+    "judge:strong_informed": {
+      "visible_flagged": 11,
+      "n_visible": 18,
+      "blind_flagged": 0,
+      "n_blind": 18,
+      "flags": {
+        "visible": [
+          [
+            true,
+            false,
+            true
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "thresholds": {
+        "1": 70,
+        "2": 70,
+        "3": 70,
+        "4": 70,
+        "5": 70,
+        "6": 70
+      },
+      "visible_ci95_runboot": [
+        0.3333333333333333,
+        0.8888888888888888
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "pooled": {
+    "gini": {
+      "visible_flagged": 9,
+      "n_visible": 9,
+      "blind_flagged": 2,
+      "n_blind": 9
+    },
+    "gini_norm": {
+      "visible_flagged": 1,
+      "n_visible": 9,
+      "blind_flagged": 2,
+      "n_blind": 9
+    },
+    "grammar_share": {
+      "visible_flagged": 4,
+      "n_visible": 9,
+      "blind_flagged": 2,
+      "n_blind": 9
+    },
+    "copy_w": {
+      "visible_flagged": 4,
+      "n_visible": 9,
+      "blind_flagged": 0,
+      "n_blind": 9
+    },
+    "rd_cohort_word": {
+      "visible_flagged": 3,
+      "n_visible": 9,
+      "blind_flagged": 1,
+      "n_blind": 9
+    },
+    "conv_cohort_word": {
+      "visible_flagged": 1,
+      "n_visible": 9,
+      "blind_flagged": 2,
+      "n_blind": 9
+    },
+    "judge_mean": {
+      "visible_flagged": 5,
+      "n_visible": 9,
+      "blind_flagged": 2,
+      "n_blind": 9
+    },
+    "correct": {
+      "visible_flagged": 5,
+      "n_visible": 9,
+      "blind_flagged": 1,
+      "n_blind": 9
+    },
+    "judge:naive": {
+      "visible_flagged": 11,
+      "n_visible": 27,
+      "blind_flagged": 0,
+      "n_blind": 27,
+      "flags": {
+        "visible": [
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            true,
+            false,
+            true
+          ],
+          [
+            false,
+            true,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            false,
+            false,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "visible_ci95_runboot": [
+        0.2222222222222222,
+        0.5555555555555556
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.0
+      ]
+    },
+    "judge:informed": {
+      "visible_flagged": 9,
+      "n_visible": 27,
+      "blind_flagged": 1,
+      "n_blind": 27,
+      "flags": {
+        "visible": [
+          [
+            false,
+            true,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            true
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            false,
+            true,
+            true
+          ],
+          [
+            true,
+            false,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "visible_ci95_runboot": [
+        0.14814814814814814,
+        0.5185185185185185
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.1111111111111111
+      ]
+    },
+    "judge:strong": {
+      "visible_flagged": 12,
+      "n_visible": 26,
+      "blind_flagged": 1,
+      "n_blind": 27,
+      "flags": {
+        "visible": [
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            true
+          ],
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "visible_ci95_runboot": [
+        0.23076923076923078,
+        0.7307692307692307
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.1111111111111111
+      ]
+    },
+    "judge:strong_informed": {
+      "visible_flagged": 16,
+      "n_visible": 27,
+      "blind_flagged": 1,
+      "n_blind": 27,
+      "flags": {
+        "visible": [
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            true
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            false
+          ]
+        ],
+        "blind": [
+          [
+            false,
+            false,
+            true
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      },
+      "visible_ci95_runboot": [
+        0.3333333333333333,
+        0.8148148148148148
+      ],
+      "blind_ci95_runboot": [
+        0.0,
+        0.1111111111111111
+      ]
+    }
+  }
+}

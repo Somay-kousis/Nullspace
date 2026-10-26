@@ -182,6 +182,9 @@ def judge_scores(d, tag=""):
 
 
 JUDGE_TAGS = ["", "_informed", "_strong", "_strong_informed"]
+# "correct" is the oracle (needs the hidden answers); the rest are what an auditor sees
+REPLAY_STATS = ["gini", "gini_norm", "grammar_share", "copy_w", "rd_cohort_word", "conv_cohort_word",
+                "judge_mean", "correct"]
 
 
 def run_dirs(root=RUNS):
@@ -276,6 +279,21 @@ def main():
     pooled = {f"{b}|{c}": {f: pooled_rd(rs, f) for f in FEATURES} for (b, c), rs in groups.items()}
     (OUT / "pooled_rd.json").write_text(json.dumps(pooled, indent=2, default=float))
     (OUT / "summary.json").write_text(json.dumps(summarise(), indent=2, default=float))
+    from .replay import replay_test
+    rep_rows = []
+    for d, r in zip(main_dirs, rows):
+        js = [x for x in judge_scores(d) if x is not None]
+        rep_rows.append({"backend": r["backend"], "condition": r["condition"], "seed": r["seed"],
+                         "stats": {**r, "judge_mean": float(np.mean(js)) if js else None},
+                         "judge": {t: judge_scores(d, t) for t in JUDGE_TAGS}})
+    rep = replay_test(rep_rows, REPLAY_STATS, JUDGE_TAGS)
+    for res in rep.values():          # same run-level bootstrap as Table 1 (families share a feed)
+        for a in res.values():
+            for cond, seed in (("visible", 0), ("blind", 1)):
+                if a.get("flags", {}).get(cond):
+                    runs = [[float(x) for x in fl] for fl in a["flags"][cond]]
+                    a[f"{cond}_ci95_runboot"] = cluster_rate_ci(runs, 0.5, seed=seed)[1]
+    (OUT / "replay.json").write_text(json.dumps(rep, indent=2, default=float))
     real = real_stats()
     (OUT / "real_export.json").write_text(json.dumps(real, indent=2, default=float))
     if REAL.exists():
